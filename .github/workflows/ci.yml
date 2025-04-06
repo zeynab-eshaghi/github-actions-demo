@@ -1,4 +1,4 @@
-name: Node.js CI
+name: React CI/CD
 
 on:
   push:
@@ -7,11 +7,11 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: گرفتن کد از GitHub
+      - name: دریافت سورس
         uses: actions/checkout@v3
 
       - name: نصب Node.js
@@ -22,5 +22,8 @@ jobs:
       - name: نصب پکیج‌ها
         run: npm install
 
-      - name: اجرای برنامه (مثلاً تست یا بیلد)
-        run: node index.js
+      - name: اجرای تست‌ها
+        run: npm test
+
+      - name: اجرای Webpack build
+        run: npx webpack

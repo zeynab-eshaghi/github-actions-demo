@@ -1,0 +1,26 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: گرفتن کد از GitHub
+        uses: actions/checkout@v3
+
+      - name: نصب Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: نصب پکیج‌ها
+        run: npm install
+
+      - name: اجرای برنامه (مثلاً تست یا بیلد)
+        run: node index.js
